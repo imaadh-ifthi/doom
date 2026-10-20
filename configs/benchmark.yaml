@@ -1,0 +1,31 @@
+benchmark:
+  name: doom_snn_benchmark_v1
+  device: auto
+  episodes_per_seed: 100
+  seeds: [6201, 6202, 6203]
+  models:
+    - name: random_baseline
+      type: baseline
+      baseline: random
+    - name: always_shoot
+      type: baseline
+      baseline: always_shoot
+    - name: left_shoot
+      type: baseline
+      baseline: left_shoot
+    - name: track_c_beta05_float
+      type: checkpoint
+      checkpoint: runs/track_c_rsnn_ac_beta05_float/best.pt
+      config: configs/track_c_rsnn_ac_beta05_float.yaml
+    - name: track_c_beta075_float
+      type: checkpoint
+      checkpoint: runs/track_c_rsnn_ac_beta075_float/best.pt
+      config: configs/track_c_rsnn_ac_beta075_float.yaml
+    - name: track_c_beta075_int16_qat
+      type: checkpoint
+      checkpoint: runs/track_c_rsnn_ac_beta075_int16_qat/best.pt
+      config: configs/track_c_rsnn_ac_beta075_int16_qat.yaml
+    - name: track_d_ff_float
+      type: checkpoint
+      checkpoint: runs/track_d_ff_snn/best.pt
+      config: configs/track_d_ff_snn.yaml

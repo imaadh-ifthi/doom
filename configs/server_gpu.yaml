@@ -1,0 +1,67 @@
+name: server_gpu
+seed: 6201
+device: cuda
+output_dir: runs
+env:
+  vizdoom_config: ''
+  scenario: basic
+  headless: true
+  dummy_env: false
+obs:
+  grayscale: true
+  height: 24
+  width: 32
+  normalize_min: 0.0
+  normalize_max: 1.0
+  flatten: true
+  input_channels: 768
+actions:
+  num_actions: 6
+  names: [noop, left, right, shoot, left_shoot, right_shoot]
+  action_repeat: 4
+neuron:
+  type: lif
+  beta: 0.75
+  threshold: 0.4
+  reset: soft
+  surrogate: fast_sigmoid
+  T: 8
+model:
+  track: c_rsnn_ac
+  core_neurons: 96
+  recurrent: true
+  readout: membrane
+  actor_outputs: 6
+  critic_outputs: 1
+training:
+  algorithm: a2c_gae
+  episodes: 500
+  rollout_length: 8
+  gamma: 0.99
+  gae_lambda: 0.95
+  lr: 0.0003
+  entropy_coef: 0.01
+  value_coef: 0.5
+  grad_clip: 0.5
+  eval_every: 50
+quantization:
+  enabled: false
+  mode: fake_quant_int16
+  weight_bits: 16
+  membrane_bits: 16
+  readout_bits: 16
+  qat: false
+  calibration_episodes: 10
+  int8_exploratory: false
+logging:
+  log_interval: 10
+  csv: true
+  json_summary: true
+  tensorboard: false
+evaluation:
+  episodes_per_seed: 100
+  seeds: [6201, 6202, 6203]
+  greedy: true
+  record_action_distribution: true
+  record_spike_stats: true
+  record_latency: true

@@ -68,3 +68,10 @@ CNN-build/_vizdoom.ini
 *.tmp
 *.bak
 *~
+
+# SNN runtime artifacts and evaluation outputs
+benchmark_output/
+eval_results/
+hardware_reports/
+runs/*
+!runs/.gitkeep

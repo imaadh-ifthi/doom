@@ -1,0 +1,27 @@
+name: track_a_ann_to_snn
+model:
+  track: a_ann_to_snn
+  core_neurons: 96
+  recurrent: false
+  readout: membrane
+  actor_outputs: 6
+  critic_outputs: 1
+neuron:
+  beta: 0.75
+  threshold: 0.4
+  T: 8
+training:
+  algorithm: a2c_gae
+  episodes: 500
+  rollout_length: 8
+  gamma: 0.99
+  gae_lambda: 0.95
+  lr: 0.0003
+  entropy_coef: 0.01
+  value_coef: 0.5
+  grad_clip: 0.5
+  eval_every: 50
+quantization:
+  enabled: false
+ann:
+  hidden_sizes: [128, 64]

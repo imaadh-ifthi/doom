@@ -1,0 +1,27 @@
+name: track_b_spike_dqn_ff
+model:
+  track: b_spike_dqn
+  core_neurons: 96
+  recurrent: false
+  readout: membrane
+  q_outputs: 6
+neuron:
+  beta: 0.75
+  threshold: 0.4
+  T: 8
+training:
+  algorithm: dqn
+  episodes: 500
+  eval_every: 50
+dqn:
+  lr: 0.001
+  gamma: 0.99
+  buffer_size: 50000
+  batch_size: 64
+  target_update_interval: 500
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_decay_steps: 10000
+  min_history: 1000
+quantization:
+  enabled: false
