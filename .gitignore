@@ -75,3 +75,5 @@ eval_results/
 hardware_reports/
 runs/*
 !runs/.gitkeep
+_vizdoom.ini
+_vizdoom
